@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Left Drawer Menu Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- javascript -->
+	<!-- include jQuery -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		
+		//set variables for drawer width (px) and speed (ms) 
+		var drawerWidth = "235"; 
+		var drawerSpeed = 400;
+		
+		//assigns width per settings above
+		$(".drawer").css({ 
+			"margin-left" : (drawerWidth * -1),  
+			"width" : drawerWidth
+		});
+		
+		//menu button toggle
+		$(".open-drawer").toggle(
+			function() {
+				$(".drawer").animate( { "margin-left" : "0" }, drawerSpeed);
+				$(".main").animate( { "margin-left" : "+=" + drawerWidth }, drawerSpeed);
+				$(".chapter-title-mobile").hide();
+			},
+			function() {
+				$(".drawer").animate( { "margin-left" : "-" + drawerWidth }, drawerSpeed);
+				$(".main").animate( { "margin-left" : "-=" + drawerWidth }, drawerSpeed);
+				setTimeout(function() {
+				$(".chapter-title-mobile").show();
+			}, drawerSpeed);
+		});
+	});
+	</script>
+	<!-- css -->
+	<style>
+	  html, body, div, span{ margin: 0; padding: 0;  border: 0; }
+	  html { height: 100%; font-family: Helvetica,Arial,sans-serif; }
+	  body { background-color: #FFF; overflow: hidden }
+	  #mobile-header { position: absolute; top: 0px; margin-left: 0px; width: 100%; height: 45px; background-color: #CFCFCF; z-index: 999 }
+	  .menu-button { float: left; margin-left: 15px; margin-top: 15px; font-size: 80%; }
+	  .page-title { text-align: center; margin-top: 12px; margin-right: 50px }
+	  .content { position: absolute;  width: 100%; height: 100%; background-color: #63AB62; }
+	  .content-text { margin-top: 175px; color: #FFF; text-align: center }
+	  .drawer { position: absolute; top: 0px; left: 0px; bottom: 0; width: 235px; color: #000; background-color: #CFCFCF; z-index: 9999 }
+	  .drawer-items { padding-left: 15px; margin-top: 12px; list-style-type: none; }
+	  .mobile-chapters { line-height: 50px; margin-left: 0px; font-size: 125% }
+	</style>
+	
+  </head>
+  <!-- HTML -->
+  <body>
+    <div class="main">
+		<div id="mobile-header">
+			<span class="menu-button"><a class="open-drawer">MENU</a></span> 
+			<div class="page-title">TITLE OF PAGE</div>
+		</div>
+		<div class="content">
+		    <div class="content-text">CONTENT</div>
+		</div><!--/.content -->
+    </div><!--/.main -->
+
+	<div class="drawer">
+      	<ul class="drawer-items">
+			<li>TITLE OF PAGE</li><br />
+	        <li class="mobile-chapters">MENU ITEM #1</li>
+			<li class="mobile-chapters">MENU ITEM #2</li>
+			<li class="mobile-chapters">MENU ITEM #3</li>
+			<li class="mobile-chapters">MENU ITEM #4</li>
+			<li class="mobile-chapters">MENU ITEM #5</li>
+			<li class="mobile-chapters">MENU ITEM #6</li>
+			
+		</ul><!--/.drawer-items -->
+	</div><!--/.drawer -->
+
+  </body>
+</html>
+
